@@ -13,16 +13,15 @@ import com.guildacode.agendakotlin.model.Student
 import kotlinx.android.synthetic.main.activity_form.*
 
 class FormActivity : AppCompatActivity() {
-    var student: Student? = Student()
+    var student: Student = Student()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)
 
-        student = intent.getSerializableExtra("student") as Student?
-        if(student?.id != null){
-            Log.i("FILL_STUDENT==> ", student.toString())
-            FrmHelper(this).fillViewStudent(student!!)
+        if(intent.getSerializableExtra("student") != null){
+            student = intent.getSerializableExtra("student") as Student
+            FrmHelper(this).fillViewStudent(student)
         }
     }
 
@@ -39,7 +38,7 @@ class FormActivity : AppCompatActivity() {
         when(item?.itemId){
             R.id.menu_form_ok -> {
                 createUpdateStudent()
-                Toast.makeText(this, "Student ${student?.name} saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Student ${student.name} saved", Toast.LENGTH_SHORT).show()
                 finish()
             }
             else -> Toast.makeText(this, "Error trying save student", Toast.LENGTH_SHORT).show()
@@ -52,10 +51,10 @@ class FormActivity : AppCompatActivity() {
 
         if (student?.id == null) {
             student = FrmHelper(this).student
-            studentDao.insertStudent(student!!)
+            studentDao.insertStudent(student)
         } else {
             student = FrmHelper(this).updateStudent(student?.id!!)
-            studentDao.updateStudent(student!!)
+            studentDao.updateStudent(student)
         }
         studentDao.close()
     }

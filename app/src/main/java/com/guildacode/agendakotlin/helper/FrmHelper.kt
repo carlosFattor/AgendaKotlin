@@ -19,7 +19,7 @@ class FrmHelper {
                 frm.frm_name.text.toString(),
                 frm.frm_address.text.toString(),
                 frm.frm_phone.text.toString(),
-                frm.frm_rating.rating.toDouble())
+                frm.frm_rating.progress.toDouble())
 
     }
 
@@ -39,7 +39,7 @@ class FrmHelper {
                 _frm.frm_name.text.toString(),
                 _frm.frm_address.text.toString(),
                 _frm.frm_phone.text.toString(),
-                _frm.frm_rating.rating.toDouble())
+                _frm.frm_rating.progress.toDouble())
         return student
     }
 }
